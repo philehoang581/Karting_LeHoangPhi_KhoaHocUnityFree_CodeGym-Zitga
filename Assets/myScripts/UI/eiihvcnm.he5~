@@ -1,0 +1,118 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
+public class UIChoseCar : MonoBehaviour
+{
+    public static UIChoseCar _instance;
+    public UnityEvent<bool> updateCar;
+    public UnityEvent<int> setCar;
+
+
+    private int idCar;
+
+    #region !!!!!!!!!!!
+    [SerializeField]
+    private Button nextCarBtn;
+    [SerializeField]
+    private Button backCarBtn;
+    [SerializeField]
+    private Button closeBtn;
+
+    public Animator animator;
+
+
+    private GameObject carItem;
+    private GameObject prefab;
+    public GameObject positionCar;
+
+    
+    private void Awake()
+    {
+        _instance = this;
+        idCar = 1;
+    }
+    private void Start()
+    {
+        
+
+        nextCarBtn.onClick.AddListener(NextCar);
+        backCarBtn.onClick.AddListener(BackCar);
+
+        closeBtn.onClick.AddListener(OnHideChose);
+
+    }
+
+    private void NextCar()
+    {
+        if (idCar >= 3)
+        {
+            idCar = 1;
+        }
+        else
+        {
+            idCar += 1;
+
+        }
+        
+        InitCar();
+        UpdateCar(true);
+        SetCar(idCar);
+    }
+
+    private void BackCar()
+    {
+        if (idCar <= 1)
+        {
+            idCar = 3;
+        }
+        else
+        {
+            idCar -= 1;
+
+        }
+        
+        InitCar();
+        UpdateCar(true);
+        SetCar(idCar);
+    }
+
+    private void InitCar()
+    {
+       
+        prefab = Resources.Load<GameObject>($"CarModel/Car-{idCar}");
+        carItem = Instantiate(prefab, positionCar.transform);
+        
+    }
+
+    public void OnHideChose()
+    {
+
+        animator.Play("outChoseCar");
+        UpdateCar(true);
+        Debug.Log("On hide Chose car..........!!!");
+    }
+
+    public void OnHideChoseEvent()
+    {
+        
+        UIController.instance.uiChoseCarGameObject.SetActive(false);
+
+        Debug.Log("On hide Chose car..........!!!");
+    }
+
+    public void UpdateCar(bool onclick)
+    {
+        updateCar?.Invoke(onclick);
+    }
+
+    #endregion
+    
+    public void SetCar(int idCar)
+    {
+        setCar?.Invoke(idCar);
+    }
+   
+}

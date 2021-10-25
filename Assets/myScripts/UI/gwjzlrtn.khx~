@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIShopElement : MonoBehaviour
+{
+    public int id;
+    public int cost;
+    public Text txt_cost;
+    // public TextMeshPro txtCost;
+    public Button btnPurchase;
+    public GameObject coin;
+
+    private GameObject carItem;
+    private GameObject prefab;
+
+    public GameObject positionCar;
+
+    private void Awake()
+    {
+        btnPurchase.onClick.AddListener(OnPurchase);
+        positionCar.transform.position = new Vector3(0, 0, 0);
+      
+    }
+
+    #region----SetData----
+    public void SetData(int id)
+    {
+        this.id = id;
+        cost = id * 100;
+        InitCar();
+
+        UpdateView();
+    }
+    #endregion
+
+    #region----InitCar
+    private void InitCar()
+    {
+        prefab = Resources.Load<GameObject>($"PrefabCar/Car-{id}");
+        carItem = Instantiate(prefab, positionCar.transform );
+    }
+    #endregion
+
+    private void Update()
+    {
+        //btnPurchase.onClick.AddListener(OnPurchase);
+    }
+
+    private void UpdateView()
+    {
+        //Kiem tra xe co dang so huu hai khong
+        var isOwned = DataPlayer.isOwnerCarWithId(id);
+        
+        //Neu so huu thi khong cho mua va nguoc lai
+        if (isOwned)
+        {
+            btnPurchase.enabled = false;
+            txt_cost.text = "Owner";
+            coin.SetActive(false);
+        }
+        else
+        {
+            btnPurchase.enabled = true;
+            coin.SetActive(true);
+            txt_cost.text = cost.ToString();
+        }
+
+        
+
+        
+    }
+
+    #region ----OnPurchase----
+    public void OnPurchase()
+    {
+        Debug.Log("Purchase success Car ID: "+id);
+        DataPlayer.AddCar(id);
+        UpdateView();
+    }
+    #endregion
+
+    
+
+    
+}
