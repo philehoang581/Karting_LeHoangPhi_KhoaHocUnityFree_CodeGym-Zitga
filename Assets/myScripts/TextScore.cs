@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class TextScore : MonoBehaviour
 {
     private Text _textScore;
+    private int score;
 
     //Event fun  
 
@@ -18,6 +19,7 @@ public class TextScore : MonoBehaviour
     
     void Start()
     {
+       // Item._instance.updateScore.AddListener(UpdateScore);
         UpdateScore(0);
         //Item._instance.updateScore.AddListener(UpdateScore);
 
@@ -32,8 +34,9 @@ public class TextScore : MonoBehaviour
     {
         //GameManager.Instance.updateScore.RemoveListener(UpdateScore);
     }
-    private void UpdateScore(int score)
+    private void UpdateScore(int _score)
     {
+        score += _score;
         _textScore.text = $"Score: {score}";
     }
       

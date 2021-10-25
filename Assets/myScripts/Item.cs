@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+
 public class Item : MonoBehaviour
 {
     [SerializeField]
@@ -12,7 +13,7 @@ public class Item : MonoBehaviour
     public UnityEvent<int> updateScore;
 
 
-
+    public AudioSource colecAudio;
     private Vector3 tempPositionCar;
 
 
@@ -32,13 +33,24 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            UIPlayManager.instance.UpdateScore(_score);
+            colecAudio.Play();
+
             CollectItem(_score);
-            //GameManager.Instance.CollectItem(_score);
-            Destroy(gameObject);
+
+            UpdateScoreEndGame();
+
+
         }
 
         
 
         tempPositionCar = gameObject.transform.position;
+    }
+
+    IEnumerator UpdateScoreEndGame()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }

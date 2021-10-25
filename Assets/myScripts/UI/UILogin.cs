@@ -28,7 +28,7 @@ public class UILogin : MonoBehaviour
    
     public void Login()
     {
-        if (userInputField.text == "" && passInputField.text == "")
+        if (userInputField.text == "phi" && passInputField.text == "phi")
         {
             UIController.instance.OnMainMenuGame();
             

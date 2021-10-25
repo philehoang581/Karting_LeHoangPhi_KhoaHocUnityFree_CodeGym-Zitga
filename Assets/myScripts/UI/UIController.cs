@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TigerForge;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class UIController : MonoBehaviour
     public Button uiMapBtn;
     public Button uiChoseBtn;
     public Button playBtn;
+    public TMP_Text text;
+    
 
     private int idScene;
 

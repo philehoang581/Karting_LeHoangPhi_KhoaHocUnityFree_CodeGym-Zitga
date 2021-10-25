@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
         car = GameObject.FindWithTag("Player");
         if (car == null)
         {
-            
+            return;
             //car = GameObject.FindGameObjectWithTag("KartClassic_Player");
             //car = GameObject.FindWithTag("Player");
         }

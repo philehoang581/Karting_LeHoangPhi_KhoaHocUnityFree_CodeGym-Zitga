@@ -67,29 +67,14 @@ public class Presenter : MonoBehaviour
         #endregion
 
         //Lay gia tri car tu UI Choose Car
-        //UIChoseCar._instance.setCar.AddListener(SetCar);
-        if (UIChoseCar._instance == null)
-        {
-            Debug.Log("Chua co UI Choose Car.... !!!");
-
-        }
-        else
-        {
-            UIChoseCar._instance.setCar.AddListener(SetCar);
-            Debug.Log("Da gan su kien Choose Car.... !!!");
-        }
+        
 
     }
     
 
     private void Start()
     {
-        if (UIChoseCar._instance == null)
-        {
-            Debug.Log("UI Choose Car khong gui ID den Presenter.... !!!");
-            playerIndex = 1;
-
-        }
+        playerIndex = Random.Range(1, 5);
         LoadPlayer();
         
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 public static class DataManager
 {
     public static int cardId;
+
+
 }
 
 /// <summary>
@@ -11,6 +13,7 @@ public static class DataManager
 /// </summary>
 public class DataManager2
 {
+    
     public static DataManager2 Instance { get; }
 
     static DataManager2()

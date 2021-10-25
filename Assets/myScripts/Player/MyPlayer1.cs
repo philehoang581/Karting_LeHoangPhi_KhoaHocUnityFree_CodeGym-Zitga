@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyShowCar : MonoBehaviour
+public class MyPlayer1 : MonoBehaviour
 {
-    public GameObject car;
-    private float rotateCar;
-
+    public Rigidbody carRigidbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +14,6 @@ public class MyShowCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float curentSpeed = carRigidbody.velocity.magnitude;
     }
 }
