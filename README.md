@@ -6,6 +6,7 @@ Game đua xe dựa trên Asset Karting để xây dựng thêm tính năng:
 3. Tạo thêm xe mới bằng cách chỉnh sửa lại model của Karting.
 4. Và những tính năng khác anh chị vui lòng xem theo link bên dưới giúp em!
 5. ReadMe: https://drive.google.com/file/d/1anDv3sgww-_XLls5-BTTlAuGjDuZpOL-/view?usp=sharing
-6. Link Build WebGL: 
+6. Link Build WebGL: https://play.unity.com/mg/other/le-hoang-phi_du-an-cuoi-khoa-unitty
+7. Video Demo: 
 
 
