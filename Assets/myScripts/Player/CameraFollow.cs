@@ -15,10 +15,6 @@ public class CameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
 
-    private void Awake()
-    {
-        
-    }
     private void Start()
     {
         car = GameObject.FindWithTag("Player");

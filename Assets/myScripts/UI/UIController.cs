@@ -31,6 +31,11 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
+        
+
+    }
+    private void OnEnable()
+    {
         player.SetActive(false);
         //Load Player
         //player = Resources.Load<GameObject>("CarModel/Ca-2");
@@ -38,32 +43,34 @@ public class UIController : MonoBehaviour
         //Khoi toi gia tri mac dinh cho scene =1
         idScene = 1;
 
+        if (DataManager.uiserLogin == false)
+        {
+            uiLoginGameObject.SetActive(true);
+            uiMainMenuObject.SetActive(false);
+
+        }
+        else
+        {
+            uiLoginGameObject.SetActive(false);
+            uiMainMenuObject.SetActive(true);
+
+
+        }
+
+        //uiMainMenuObject.SetActive(false);
+        uiShopGameObject.SetActive(false);
+        uiMapGameObject.SetActive(false);
+        uiChoseCarGameObject.SetActive(false);
+
+
+
         instance = this;
         uiShopBtn.onClick.AddListener(OnOpenShop);
         uiMapBtn.onClick.AddListener(OnOpenMap);
         uiChoseBtn.onClick.AddListener(OnOpenChoseCar);
         playBtn.onClick.AddListener(LoadLevel);
-
-        
-
-        uiLoginGameObject.SetActive(true);
-        uiMainMenuObject.SetActive(false);
     }
 
-    private void Start()
-    {
-        uiShopGameObject.SetActive(false);
-        uiMapGameObject.SetActive(false);
-        uiChoseCarGameObject.SetActive(false);
-
-        
-
-    }
-    private void OnEnable()
-    {
-        //Lang nghe su kien tu UIMapPopup
-        //UIMapPopup._instance.updateMap.AddListener(UpdateMap);
-    }
     private void OnDisable()
     {
         //Lang nghe su kien tu UIMapPopup

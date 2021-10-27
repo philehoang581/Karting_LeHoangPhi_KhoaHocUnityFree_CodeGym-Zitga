@@ -3,7 +3,8 @@ using UnityEngine;
 
 public static class DataManager
 {
-    public static int cardId;
+    public static int cardId=1;
+    public static bool uiserLogin = false;
 
 
 }

@@ -74,7 +74,8 @@ public class Presenter : MonoBehaviour
 
     private void Start()
     {
-        playerIndex = Random.Range(1, 5);
+        // playerIndex = Random.Range(1, 5);
+        playerIndex = DataManager.cardId;
         LoadPlayer();
         
     }
@@ -89,6 +90,7 @@ public class Presenter : MonoBehaviour
 
     private void LoadPlayer()
     {
+
         var path = "PrefabCar/Car";
         prefabPlayer = Resources.Load<GameObject>(path + playerIndex);
         Debug.Log($"Path:  {path + playerIndex}");

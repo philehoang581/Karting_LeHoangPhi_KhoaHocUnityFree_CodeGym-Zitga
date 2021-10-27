@@ -38,21 +38,16 @@ public class UIShopElement : MonoBehaviour
         btnBackCar.onClick.AddListener(BackCar);
         hideBtn.onClick.AddListener(OnHideShop);
 
-        
-
-
-
-
     }
 
     private void OnEnable()
     {
-        Debug.Log("UI Shop Element duoc goi...!!!");
+        //Debug.Log("UI Shop Element duoc goi...!!!");
         InitCar();
     }
     private void NextCar()
     {
-        if (idCar >= 3)
+        if (idCar >= 4)
         {
             idCar = 1;
         }
@@ -72,7 +67,7 @@ public class UIShopElement : MonoBehaviour
     {
         if (idCar <=1)
         {
-            idCar = 3;
+            idCar = 4;
         }
         else
         {
@@ -97,8 +92,6 @@ public class UIShopElement : MonoBehaviour
         this.idCar = id;
         cost = id * 100;
         
-
-        
         UpdateView();
     }
     #endregion
@@ -113,11 +106,7 @@ public class UIShopElement : MonoBehaviour
     }
     #endregion
 
-    private void Update()
-    {
-        //btnPurchase.onClick.AddListener(OnPurchase);
-    }
-
+    
     private void UpdateView()
     {
         //Kiem tra xe co dang so huu hai khong
@@ -137,7 +126,6 @@ public class UIShopElement : MonoBehaviour
             txt_cost.text = cost.ToString();
         }
 
-        
     }
 
     #region ----OnPurchase----
@@ -146,6 +134,9 @@ public class UIShopElement : MonoBehaviour
         Debug.Log("Purchase success Car ID: "+ idCar);
         DataPlayer.AddCar(idCar);
         UpdateView();
+
+        //test goi ham GetCar
+       
     }
     #endregion
 

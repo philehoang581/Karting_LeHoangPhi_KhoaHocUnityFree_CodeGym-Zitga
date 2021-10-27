@@ -14,7 +14,8 @@ public class UIChoseCar : MonoBehaviour
     //Su kien gia tri car id cho man choi (Scene Level1 và Scene Level2)
     public UnityEvent<int> setCar;
 
-    private int idCar;
+    private int indexCar;
+    private int valueCar;
 
     
 
@@ -37,8 +38,10 @@ public class UIChoseCar : MonoBehaviour
     {
        
         _instance = this;
-        idCar = 1;
-       
+        indexCar = 0;
+        valueCar = DataPlayer.GetCar(indexCar);
+
+
     }
     private void Start()
     {
@@ -53,19 +56,21 @@ public class UIChoseCar : MonoBehaviour
 
     private void NextCar()
     {
-        if (idCar >= 3)
+        indexCar++;
+        int quantityCar = DataPlayer.GetQuantityCar();
+        if (indexCar>quantityCar-1)
         {
-            idCar = 1;
+            indexCar = 0;
         }
-        else
-        {
-            idCar += 1;
+       
+        //Lấy giá rị indexCar làm index trong carList => load lên model car
+        valueCar = DataPlayer.GetCar(indexCar);
+        //Debug.Log($"Gia tri value car trong hàm UIShooseCar: {valueCar}");
 
-        }
-        
-        // Gui idCar den Prencenter trong GamePlay Level1, Level2
-        SetCar(idCar);
+        // Gui indexCar den Prencenter trong GamePlay Level1, Level2
 
+        SetCar(valueCar);
+        //Debug.Log($"valueCar lay tu Data: {valueCar}");
 
         UpdateCarChooseCar(true);
         InitCar();
@@ -74,34 +79,42 @@ public class UIChoseCar : MonoBehaviour
 
     private void BackCar()
     {
-        if (idCar <= 1)
-        {
-            idCar = 3;
-        }
-        else
-        {
-            idCar -= 1;
-        }
-
-        //Gui idCar den Prencenter trong GamePlay Level1, Level2
-        SetCar(idCar);
+        indexCar--;
         
+        int quantityCar = DataPlayer.GetQuantityCar();
+        if (indexCar < 0)
+        {
+            indexCar = quantityCar-1;
+        }
+        Debug.Log($"Gia tri Index car trong hang BACK: {indexCar}");
+
+        //Lấy giá rị indexCar làm index trong carList => load lên model car
+        valueCar = DataPlayer.GetCar(indexCar);
+        //Debug.Log($"Gia tri value car trong hàm UIShooseCar: {valueCar}");
+
+        // Gui indexCar den Prencenter trong GamePlay Level1, Level2
+
+        SetCar(valueCar);
+        //Debug.Log($"valueCar lay tu Data: {valueCar}");
+
         UpdateCarChooseCar(true);
         InitCar();
     }
 
-    public void SetCar(int idCar)
+    public void SetCar(int indexCar)
     {
-        setCar?.Invoke(idCar);
-        DataManager.cardId = idCar;
-        PlayerPrefs.SetInt("CarId", idCar); // lưu qua nhiều session, persistent storage
-        DataManager2.Instance.cardId = idCar;
-        Debug.Log($"Choose car dang phat su kien chon car ID: {idCar}");
+
+        setCar?.Invoke(indexCar);
+        DataManager.cardId = indexCar;
+        //PlayerPrefs.SetInt("CarId", indexCar); // lưu qua nhiều session, persistent storage
+        //DataManager2.Instance.cardId = indexCar;
+        //Debug.Log($"Choose car dang phat su kien chon car ID: {indexCar}");
     }
     private void InitCar()
     {
        
-        prefab = Resources.Load<GameObject>($"CarModel/Car-{idCar}");
+        prefab = Resources.Load<GameObject>($"CarModel/Car-{valueCar}");
+        Debug.Log($"Value Carr: {valueCar}");
         carItem = Instantiate(prefab, positionCar.transform);
         
     }

@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+[RequireComponent(typeof(TextMeshPro))]
+public class UpdateKmh : MonoBehaviour
+{
+    private TextMeshPro _textScore;
+    private float kmh;
+
+
+    private void Start()
+    {
+        MyPlayer.instance.updateKmh.AddListener(CapNhatTocDo);
+    }
+    
+    private void CapNhatTocDo(float _kmh)
+    {
+        kmh += _kmh;
+        _textScore.text = $"{kmh} Km/h";
+    }
+
+}

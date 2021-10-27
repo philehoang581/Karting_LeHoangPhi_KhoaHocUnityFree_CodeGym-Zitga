@@ -28,8 +28,10 @@ public class UILogin : MonoBehaviour
    
     public void Login()
     {
-        if (userInputField.text == "phi" && passInputField.text == "phi")
+        if (userInputField.text == "" && passInputField.text == "")
         {
+            DataManager.uiserLogin = true;
+            Debug.Log($"Gia ti userLogin: {DataManager.uiserLogin}");
             UIController.instance.OnMainMenuGame();
             
             

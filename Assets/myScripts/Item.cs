@@ -12,11 +12,16 @@ public class Item : MonoBehaviour
     public static Item _instance;
     public UnityEvent<int> updateScore;
 
+    public UnityEvent<Vector3> updateTempPosition;
+
 
     public AudioSource colecAudio;
     private Vector3 tempPositionCar;
 
-
+    private void Awake()
+    {
+        _instance = this;
+    }
     public void CollectItem(int score)
     {
         //this._score += score;
@@ -25,21 +30,30 @@ public class Item : MonoBehaviour
         //_textScore.text = "Score: "+this._score.ToString();
     }
 
+
+    public void UpdateTempPostionCar(Vector3 tempPostion)
+    {
+        //updateTempPosition?.Invoke(tempPositionCar);
+        //Debug.Log($"Thu thap Item vi tri: {gameObject.transform.position}");
+    }
     private void Start()
     {
-        
+        GetComponent<GameObject>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             UIPlayManager.instance.UpdateScore(_score);
-            colecAudio.Play();
+            //colecAudio.Play();
 
             CollectItem(_score);
 
             UpdateScoreEndGame();
 
+            //gui su kien update vi tri xe khi nguoi choi thu thap item
+            UpdateTempPostionCar(gameObject.transform.position);
+            Destroy(gameObject);
 
         }
 

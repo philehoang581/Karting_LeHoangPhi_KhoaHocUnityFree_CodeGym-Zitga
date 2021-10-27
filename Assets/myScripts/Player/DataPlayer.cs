@@ -44,11 +44,25 @@ public static class DataPlayer
         SaveDatda();
     }
 
+    public static int GetCar(int carId)
+    {
+        int valueCar = allData.GetCar(carId);
+        Debug.Log($"Gia tri value car trong hàm GetCar: {valueCar}");
+        return valueCar;
+    }
+    public static int GetQuantityCar()
+    {
+        Debug.Log($"So luong xe dang co: {allData.GetQuantityCar()}");
+        return allData.GetQuantityCar();
+    }
+
 }
 
 public class AllData
 {
+    //them static
     public List<int> carList;
+    
 
     public bool isOwnerCarWithId(int id)
     {
@@ -66,4 +80,23 @@ public class AllData
         }
         */
     }
+
+    public int GetCar(int indexCar)
+    {
+        
+        int valueCar = carList[indexCar];
+        return valueCar;
+
+    }
+    
+
+    public int GetQuantityCar()
+    {
+        return carList.Count;
+    }
+
+
+
+
+
 }

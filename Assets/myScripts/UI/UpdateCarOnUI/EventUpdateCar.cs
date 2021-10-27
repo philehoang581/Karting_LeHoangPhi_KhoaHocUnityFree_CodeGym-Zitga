@@ -21,7 +21,7 @@ public class EventUpdateCar : MonoBehaviour
         
         if (UIChoseCar._instance == null)
         {
-            Debug.Log("Chua co UI Choose Car.... !!!");
+            //Debug.Log("Chua co UI Choose Car.... !!!");
             
         }
         else
@@ -31,13 +31,13 @@ public class EventUpdateCar : MonoBehaviour
 
         if (UIShopElement._instance == null)
         {
-            Debug.Log("Chua co UI Shop.... !!!");
+            //Debug.Log("Chua co UI Shop.... !!!");
             
         }
         else
         {
             UIShopElement._instance.updateCarShop.AddListener(UpdatteCar);
-            Debug.Log("Su kieen UI Shop da duoc gan.... !!!");
+            //Debug.Log("Su kieen UI Shop da duoc gan.... !!!");
         }
        
 
